@@ -31,9 +31,57 @@ _"Keras is the high-level API of TensorFlow 2: an approachable, highly-productiv
 
 Tensorflow, in the other hand, is an open source machine learning library that can be used from many languages.
 
+## Docker
+
+To avoid polluting the host computer with unnecessary software we will work inside a docker container as much as possible.
+
+### Building the container
+
+To build the container you only have to:
+
+``` sh
+docker build -t 3d_printer_monitor .
+```
+
+### Running the container
+
+``` sh
+docker run -v $(pwd):/app -ti 3d_printer_monitor
+```
+
+### Accessing the container
+
 ## Step 1: Simple image classification
 
 Here we need to describe how to build a simple image classification (i.e. something good / something bad)
+
+### Getting the images
+
+Perhaps one of the most tedious parts of any Machine Learning (ML) projects is to get the right set of images for training and testing.
+
+Like any other ML project focused on image recognition we need to get a large amount of images of 3d printers doing both a good and a bad job.
+
+For this purpose we realized that a good source and diverse images are YouTube videos, since there are plenty of people showing their printings in timelapses.
+
+So, the steps for this are:
+
+1. **SELECT VIDEOS**: Select several videos where we can capture good and bad videos.
+   - Videos must show different 3d printers and desk configurations
+   - Videos must show different models
+   - Videos must show different models in different colors
+   - Videos must come from different sources
+   - Videos must come (ideally) from different camera resultions
+   - Videos must come (ideally) from different camera models
+   - All the requirements described above are to avoid overfitting
+2. **TAKE IMAGE SAMPLES**: After getting the videos we should be able to take samples from them.
+   - Samples must taken on regular intervals in the video (like every n seconds)
+   - Samples don't have to be necessarily cropped
+
+### Downloading and tagging the sources
+
+We created a program based on a YouTube library to download youtube videos and also categorize them.
+
+This software is based on `pytube` a library to interact with YouTube. The source can be found in [./src/youtube_downloader.py](./src/youtube_downloader.py)
 
 ## Step 2: Find a simple way to get images
 
