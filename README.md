@@ -65,7 +65,7 @@ For this purpose we realized that a good source and diverse images are YouTube v
 
 So, the steps for this are:
 
-1. **SELECT VIDEOS**: Select several videos where we can capture good and bad videos.
+1. **SELECT VIDEOS**: Select several videos where we can capture videos about 3d printing with good and bad results:
    - Videos must show different 3d printers and desk configurations
    - Videos must show different models
    - Videos must show different models in different colors

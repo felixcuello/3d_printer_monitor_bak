@@ -1,13 +1,20 @@
-FROM python:3.9.4-alpine
+FROM python:3.6.13-buster
 
-RUN apk update
+#  Install useful packages
+# -------------------------------------------------------------------------
+RUN apt -y update
+RUN apt -y install cmake # requirements
+RUN apt -y install vim # I want this
 
-RUN apk add vim
 
+# -------------------------------------------------------------------------
 COPY . /app
-
 WORKDIR /app
 
-RUN pip3 install -r requirements.txt
 
-CMD /bin/sh
+#  Install libraries related to the YouTube Downloader
+# -------------------------------------------------------------------------
+RUN pip install --upgrade pip
+RUN pip3 install -r ./src/requirements.txt
+
+CMD /bin/bash

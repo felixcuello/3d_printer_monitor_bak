@@ -2,4 +2,10 @@
 #  Required Libraries
 # 0-._.-._.-._.-._.-._.-._.-0-._.-._.-._.-._.-._.-._.-0-._.-._.-._.-._.-._.-._.-0
 
-pytube3==9.6.4              # This is required to download YouTube videos
+#  Required for the youtube/downloader.py module
+# -------------------------------------------------------------------------
+pytube==10.7.2                  # This is required to download YouTube videos
+opencv-python==4.5.1.48         # This is required to take frames out from videos
+
+
+# acapture                      # We're not using this, but this will be good for real time processing
