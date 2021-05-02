@@ -1,13 +1,23 @@
 from youtube.downloader import yt_download
 from video.tools import get_frames
+from utils.logger import *
+import sys
 
-desired_video = "https://www.youtube.com/watch?v=OaSwzjjVid4" # 3d printer video
-desired_video = "https://www.youtube.com/watch?v=bH6OGXNUCC0" # sample SHORT video
+if len(sys.argv) != 3:
+    print()
+    print("Usage: ")
+    print("     {} <youtube_url> <frame_names>".format(sys.argv[0]))
+    print()
+    exit(1)
 
-output_directory = "/app/images/youtube"
+# desired_video = "https://www.youtube.com/watch?v=OaSwzjjVid4" # 3d printer video
+# desired_video = "https://www.youtube.com/watch?v=bH6OGXNUCC0" # sample SHORT video
+desired_video = sys.argv[1]
 
-# filename = yt_download(desired_video, output_directory)
-filename = "/app/images/youtube/7a2d6b26-5613-4b4b-bfb1-1f7a71c5bfcf.mp4"
-print("File was saved in {}".format(filename))
+video_output_directory = "/app/media/youtube/"
+images_output_directory = "/app/media/images/"
 
-get_frames(output_directory, filename)
+filename = yt_download(desired_video, video_output_directory)
+log_info("File was saved in {}".format(filename))
+
+get_frames(images_output_directory, filename, sys.argv[2])

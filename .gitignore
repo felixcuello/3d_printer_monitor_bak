@@ -1,5 +1,6 @@
 # mp4 files should be ignored since they're too big to commit
 *.mp4
+.DS_Store
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
