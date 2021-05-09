@@ -1,6 +1,6 @@
 # 3d Printer Monitor
 
-## Introduction
+# Introduction
 
 The goal of this project is to create a monitoring software that can monitor a 3d printer and detect anomalies.
 
@@ -17,6 +17,10 @@ Below you'll find a few examples of anomalies. Probably further in this investig
 - Problems in the model printed
 - ...
 
+
+
+# Libraries
+
 ## Keras
 
 The first quick research on the topic of "image recognition" and "image classification" led me to Keras.
@@ -27,43 +31,74 @@ _"Keras is a deep learning API written in Python, running on top of the machine 
 
 _"Keras is the high-level API of TensorFlow 2: an approachable, highly-productive interface for solving machine learning problems, with a focus on modern deep learning. It provides essential abstractions and building blocks for developing and shipping machine learning solutions with high iteration velocity."_
 
+
+
 ## Tensorflow
 
 Tensorflow, in the other hand, is an open source machine learning library that can be used from many languages.
 
-## Docker
+
+
+# Docker Containers
 
 To avoid polluting the host computer with unnecessary software we will work inside a docker container as much as possible.
 
-### Building the container
+## Building the container
 
-To build the container you only have to:
+Building the container is quite easy, thanks to the `docker-compose` tool.
 
-``` sh
-docker build -t 3d_printer_monitor .
-```
-
-### Running the container
+The following command will  build the `3d_printer_monitor` container with all the tools and apps required to run it.
 
 ``` sh
-docker run -v $(pwd):/app -ti 3d_printer_monitor
+docker-compose build
 ```
 
-### Accessing the container
 
-## Step 1: Simple image classification
+
+# Tools in the container
+tools/youtube_video_sampler
+Once the container is built. There are some tools already coded in the container.
+
+## YouTube Video Sampler
+
+The YouTube Video Sampler (`tools/youtube_video_sampler`) is a tool that permits you to download and get frames out of the youtube videos.
+
+The parameters are positional and are self explanatory:
+
+``` sh
+
+Usage:
+     tools/youtube_video_sampler <youtube_url> <frame_names> <sample_rate_ms> [YouTube video quality]
+
+     YouTube Video Quality: 144p, 240p, 360p, (480p) default, 720p, 1080p
+     
+```
+
+
+
+# Machine Learning
+
+In any maachine learning project, the process of carefully selecting the learning data is one of the most tedious processes.
+
+For this phase of the process we want to identify only TWO things:
+
+- **Printing is going GOOD**: This means the printer shouldn't be stopped, and the printer is working as expected.
+
+- **Printing is having a PROBLEM**: A problem has been detected and the printer must be stopped and the user should be notified.
+
+
+
+# Step 1: Simple image classification
 
 Here we need to describe how to build a simple image classification (i.e. something good / something bad)
 
-### Getting the images
-
-Perhaps one of the most tedious parts of any Machine Learning (ML) projects is to get the right set of images for training and testing.
+## Getting the images
 
 Like any other ML project focused on image recognition we need to get a large amount of images of 3d printers doing both a good and a bad job.
 
 For this purpose we realized that a good source and diverse images are YouTube videos, since there are plenty of people showing their printings in timelapses.
 
-So, the steps for this are:
+The steps for this are:
 
 1. **SELECT VIDEOS**: Select several videos where we can capture videos about 3d printing with good and bad results:
    - Videos must show different 3d printers and desk configurations
@@ -77,11 +112,32 @@ So, the steps for this are:
    - Samples must taken on regular intervals in the video (like every n seconds)
    - Samples don't have to be necessarily cropped
 
-### Downloading and tagging the sources
+The very first step on this project is to get as many images as possible tagged as **GOOD** printings and **BAD** printings.
 
-We created a program based on a YouTube library to download youtube videos and also categorize them.
+These images are going to be catalogued here:
 
-This software is based on `pytube` a library to interact with YouTube. The source can be found in [./src/youtube_downloader.py](./src/youtube_downloader.py)
+- `/media/images/good`: Are the images representing **GOOD** printings
+
+- `/media/images/bad`: Are the images representing **BAD** printings
+
+## Downloading and tagging the sources
+
+By using the [YouTube Video Sampler tool](tools/youtube_video_sampler) explained in the previous section, we will download several Youtube videos tagging the images as either **GOOD** or **BAD**.
+
+# Reading Material
+
+- [Basic Image Classification](https://www.tensorflow.org/tutorials/keras/classification)
+- [Keras - deep learning library for Python](https://keras.io/)
+- [Introduction to Keras for Engineers](https://keras.io/getting_started/intro_to_keras_for_engineers/)
+- [Image Classification From Scratch](https://keras.io/examples/vision/image_classification_from_scratch/)
+- [Building a powerful image classification](https://blog.keras.io/building-powerful-image-classification-models-using-very-little-data.html)
+- [Transfer learning and fine tunning](https://keras.io/guides/transfer_learning/)
+
+
+# --------------------------------------------------------------------------------------
+## ALL STEPS BELOW THIS POINT ARE PENDING
+# --------------------------------------------------------------------------------------
+
 
 ## Step 2: Find a simple way to get images
 
@@ -107,11 +163,3 @@ We need to build a software that can take snapshots of a 3d printing machine and
 
 This could be a something like an e-mail or just send a signal somewhere to alert.
 
-## Reading Material
-
-- [Basic Image Classification](https://www.tensorflow.org/tutorials/keras/classification)
-- [Keras - deep learning library for Python](https://keras.io/)
-- [Introduction to Keras for Engineers](https://keras.io/getting_started/intro_to_keras_for_engineers/)
-- [Image Classification From Scratch](https://keras.io/examples/vision/image_classification_from_scratch/)
-- [Building a powerful image classification](https://blog.keras.io/building-powerful-image-classification-models-using-very-little-data.html)
-- [Transfer learning and fine tunning](https://keras.io/guides/transfer_learning/)
