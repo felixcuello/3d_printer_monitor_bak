@@ -15,8 +15,7 @@ def yt_download(video, output_dir, video_quality):
     out_file = video.download(output_dir)
 
     # Remove file
-    #target_file = "{}/{}.mp4".format(output_dir, uuid.uuid4())
-    target_file = "{}/temp.mp4".format(output_dir) # remove this line and replace it with the above one
+    target_file = "{}/{}.mp4".format(output_dir, uuid.uuid4())
     if os.path.exists(target_file):
         os.unlink(target_file)
 

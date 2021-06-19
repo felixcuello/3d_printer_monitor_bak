@@ -59,21 +59,35 @@ docker-compose build
 tools/youtube_video_sampler
 Once the container is built. There are some tools already coded in the container.
 
-## YouTube Video Sampler
+## YouTube Video Downloader
 
-The YouTube Video Sampler (`tools/youtube_video_sampler`) is a tool that permits you to download and get frames out of the youtube videos.
+The YouTube Video Downloader (`tools/youtube_video_downloader`) is a tool that permits you to download youtube videos.
 
 The parameters are positional and are self explanatory:
 
 ``` sh
 
 Usage:
-     tools/youtube_video_sampler <youtube_url> <frame_names> <sample_rate_ms> [YouTube video quality]
+     tools/youtube_video_downloader <youtube_url> [YouTube video quality]
 
      YouTube Video Quality: 144p, 240p, 360p, (480p) default, 720p, 1080p
      
 ```
 
+## Video Splitter
+
+The Video Splitter (`tools/video_splitter`) is a tool that permits you to split videos into frames.
+
+The parameters are also self explanatory:
+
+``` sh
+
+Usage:
+     tools/video_splitter <video_path> <frame_names> [sample_rate_ms]
+
+     sample_rate_ms default is 50ms
+
+```
 
 
 # Machine Learning

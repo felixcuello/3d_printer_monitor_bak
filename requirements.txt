@@ -4,7 +4,7 @@
 
 #  Required for the youtube/downloader.py module
 # -------------------------------------------------------------------------
-pytube==10.7.2                  # This is required to download YouTube videos
+pytube==10.8.5                  # This is required to download YouTube videos
 opencv-python==4.5.1.48         # This is required to take frames out from videos
 
 
