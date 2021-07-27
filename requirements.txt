@@ -5,7 +5,9 @@
 #  Required for the youtube/downloader.py module
 # -------------------------------------------------------------------------
 pytube==10.8.5                  # This is required to download YouTube videos
+#pytube3==9.6.4                  # This is required to download YouTube videos
 opencv-python==4.5.1.48         # This is required to take frames out from videos
-
+tensorflow==2.5.0		# This is required for keras
+matplotlib==3.3.4		# This is for plot
 
 # acapture                      # We're not using this, but this will be good for real time processing

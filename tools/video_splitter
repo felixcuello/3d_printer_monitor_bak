@@ -4,12 +4,14 @@ from video.tools import get_frames
 from utils.logger import *
 import sys
 
+sample_rate_ms = "200"
+
 if len(sys.argv) < 2:
     print()
     print("Usage: ")
     print("     {} <video_path> <frame_names> [sample_rate_ms]".format(sys.argv[0]))
     print()
-    print("     sample_rate_ms default is 50ms")
+    print("     sample_rate_ms default is {} ms".format(sample_rate_ms))
     print()
     exit(1)
 
@@ -17,8 +19,6 @@ video_path = sys.argv[1]
 frame_name = sys.argv[2]
 if len(sys.argv) == 4:
     sample_rate_ms = sys.argv[3]
-else:
-    sample_rate_ms = "50"
 
 images_output_directory = "/app/media/images/"
 
