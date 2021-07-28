@@ -38,7 +38,6 @@ _"Keras is the high-level API of TensorFlow 2: an approachable, highly-productiv
 Tensorflow, in the other hand, is an open source machine learning library that can be used from many languages.
 
 
-
 # Docker Containers
 
 To avoid polluting the host computer with unnecessary software we will work inside a docker container as much as possible.
@@ -70,7 +69,7 @@ The parameters are positional and are self explanatory:
 Usage:
      tools/youtube_video_downloader <youtube_url> [YouTube video quality]
 
-     YouTube Video Quality: 144p, 240p, 360p, (480p) default, 720p, 1080p
+     YouTube Video Quality: 144p, 240p, (360p) default, 480p, 720p, 1080p
      
 ```
 
@@ -85,7 +84,7 @@ The parameters are also self explanatory:
 Usage:
      tools/video_splitter <video_path> <frame_names> [sample_rate_ms]
 
-     sample_rate_ms default is 50ms
+     sample_rate_ms default is 250ms
 
 ```
 
@@ -137,6 +136,35 @@ These images are going to be catalogued here:
 ## Downloading and tagging the sources
 
 By using the [YouTube Video Sampler tool](tools/youtube_video_sampler) explained in the previous section, we will download several Youtube videos tagging the images as either **GOOD** or **BAD**.
+
+Following sections are listing videos used for getting Good and Bad Images
+
+### Good
+
+- (G-0001) https://www.youtube.com/watch?v=aubLuCFIejc
+- (G-0002) https://www.youtube.com/watch?v=54ZKeYPmoVs
+- (G-0003) https://www.youtube.com/watch?v=bgHoQ_5dT2M
+- (G-0004) https://www.youtube.com/watch?v=zBuFs-Hupto
+- (G-0005) https://www.youtube.com/watch?v=VFQeV8m9HQo
+- (G-0006) https://www.youtube.com/watch?v=Dss1yUHH-QY
+- (G-0007) https://www.youtube.com/watch?v=dlt8ObxzoHQ
+- (G-0008) https://www.youtube.com/watch?v=Jizyu0nGH18
+- (G-0009) https://www.youtube.com/watch?v=uBeVbDJKHw0
+- (G-0010) https://www.youtube.com/watch?v=qpv4-tfkipw
+
+### Bad
+
+- (B-0001) https://www.youtube.com/watch?v=JGpCGOMgk5g
+- (B-0002) https://www.youtube.com/watch?v=ZmS-3Kcti10
+- (B-0003) https://www.youtube.com/watch?v=uzKMV_O42SY
+- (B-0004) https://www.youtube.com/watch?v=4Y8bPODaEk4
+- (B-0005) https://www.youtube.com/watch?v=305lLo2FcfQ
+- (B-0006) https://www.youtube.com/watch?v=ZBWBVMABR0w
+- (B-0007) https://www.youtube.com/watch?v=WZugigyVyrA
+- (B-0008) https://www.youtube.com/watch?v=i583-DYivpA
+- (B-0009) https://www.youtube.com/watch?v=8zB2mlJXeHU
+- (B-0010) https://www.youtube.com/watch?v=hCxdupxs1Ng
+
 
 # Reading Material
 
