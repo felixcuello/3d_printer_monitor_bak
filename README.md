@@ -89,6 +89,21 @@ Usage:
 ```
 
 
+## Split Cateogries in Training / Test sets
+
+The Split Categories script split training/test set into directories to feed the convolutional neural network:
+
+``` sh
+
+Usage:
+     ./tools/split_training_set <media_directory> <csv_categories> [test_percentage]
+     (default training: 20%)
+
+```
+
+An example of usage can be like this: `./tools/split_training_set media/images "bad,good"`
+
+
 # Machine Learning
 
 In any maachine learning project, the process of carefully selecting the learning data is one of the most tedious processes.
@@ -141,7 +156,7 @@ Following sections are listing videos used for getting Good and Bad Images
 
 ### Good
 
-- (G-0001) https://www.youtube.com/watch?v=aubLuCFIejc
+- (GEA001) https://www.youtube.com/watch?v=aubLuCFIejc
 - (G-0002) https://www.youtube.com/watch?v=54ZKeYPmoVs
 - (G-0003) https://www.youtube.com/watch?v=bgHoQ_5dT2M
 - (G-0004) https://www.youtube.com/watch?v=zBuFs-Hupto
