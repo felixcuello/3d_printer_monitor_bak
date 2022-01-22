@@ -1,0 +1,91 @@
+#!/usr/bin/env python3
+
+# -------------------------------------------------------------------------
+#   This script splits your media set into two sets
+#   ./split_training_set <media_directory> <csv_categories> [test_percentage]
+#
+#   <media_directory>   is the directory where your media is (A, B)
+#   <csv_categories>    are the categories in CSV format
+#   [test_percentage]   default is 25%
+# -------------------------------------------------------------------------
+
+import os
+import sys
+import shutil
+import random
+
+test_percentage = 25
+
+if len(sys.argv) < 3:
+    print()
+    print("Usage: ")
+    print("     {} <media_directory> <csv_categories> [test_percentage]".format(sys.argv[0]))
+    print("     (default training: {}%)".format(test_percentage))
+    print()
+    exit(1)
+
+media_path = sys.argv[1]
+if len(sys.argv) >= 4:
+    test_percentage = sys.argv[3]
+
+output_path = os.path.join(media_path, 'output')
+categories = sys.argv[2].split(",")
+
+# -------------------------------------------------------------------------
+print("[ii] Removing {}".format(output_path))
+try:
+    shutil.rmtree(output_path)
+except:
+    print("[ww] Directory doesn't exist")
+
+
+# -------------------------------------------------------------------------
+#  Create main output directories
+# -------------------------------------------------------------------------
+os.mkdir(output_path)
+
+test_path = os.path.join(output_path, 'test')
+os.mkdir(test_path)
+train_path = os.path.join(output_path, 'train')
+os.mkdir(train_path)
+
+for category in categories:
+    # ---------------------------------------------------------------------
+    #  Create directories for each category and copy the data
+    # ---------------------------------------------------------------------
+    print()
+
+    # ---------------------------------------------------------------------
+    #  Creating directories
+    # ---------------------------------------------------------------------
+    test_path = os.path.join(output_path, 'test', category)
+    train_path = os.path.join(output_path, 'train', category)
+    print("[ii] Creating {}".format(train_path))
+    os.mkdir(test_path)
+    print("[ii] Creating {}".format(test_path))
+    os.mkdir(train_path)
+
+    # ---------------------------------------------------------------------
+    #  Create the training/test sets randomly
+    # ---------------------------------------------------------------------
+    category_path = os.path.join(media_path, category)
+    print("[ii] Getting {}% as testing set from {}".format(test_percentage, category_path))
+    files = os.listdir(category_path)
+    random.shuffle(files)
+    split_pos = int(len(files) * test_percentage / 100)
+
+    # ---------------------------------------------------------------------
+    #  Copy the training/test sets to the respective directories
+    # ---------------------------------------------------------------------
+    print("[ii] Copy from {} to {}".format(category_path, test_path))
+    test_set = files[:split_pos]
+    for file in test_set:
+        source = os.path.join(category_path, file)
+        target = os.path.join(test_path, file)
+        shutil.copyfile(source, target)
+
+    train_set = files[split_pos-1:]
+    for file in train_set:
+        source = os.path.join(category_path, file)
+        target = os.path.join(train_path, file)
+        shutil.copyfile(source, target)

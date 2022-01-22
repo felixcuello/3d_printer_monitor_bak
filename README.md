@@ -122,7 +122,17 @@ Here we need to describe how to build a simple image classification (i.e. someth
 
 ## Getting the images
 
-Like any other ML project focused on image recognition we need to get a large amount of images of 3d printers doing both a good and a bad job.
+Like any other ML project focused on image recognition we need to get a large amount of images of 3d printers doing both a good and a bad job. After looking online for some resources like Google Images, I couldn't find easily a set of images with good / bad printing exmaples.
+
+I've been doing that for a while, until I realized that perhaps a good source of images aren't IMAGES itself, but videos. Since videos are a sequence of images, perhaps I can do this:
+
+1. Get videos from youtube
+2. Split videos into images
+3. Crop the images
+4. Classify them as Good or Bad images
+
+
+## Step 2: Find a simple way to get images
 
 For this purpose we realized that a good source and diverse images are YouTube videos, since there are plenty of people showing their printings in timelapses.
 
@@ -180,6 +190,16 @@ Following sections are listing videos used for getting Good and Bad Images
 - (B-0009) https://www.youtube.com/watch?v=8zB2mlJXeHU
 - (B-0010) https://www.youtube.com/watch?v=hCxdupxs1Ng
 
+## Step 3: Create Standar Representation of Images
+
+According to Keras documentation:
+
+_Neural networks don't process raw data, like text files, encoded JPEG image files, or CSV files. They process vectorized & standardized representations_
+
+Therefore we need to normalize the images before using them.
+
+## Step 4: Data Agumentation
+
 
 # Reading Material
 
@@ -195,18 +215,6 @@ Following sections are listing videos used for getting Good and Bad Images
 ## ALL STEPS BELOW THIS POINT ARE PENDING
 # --------------------------------------------------------------------------------------
 
-
-## Step 2: Find a simple way to get images
-
-We need to create a train / test set of images, so we can train and test our model.
-
-## Step 3: Create Standar Representation of Images
-
-According to Keras documentation:
-
-_Neural networks don't process raw data, like text files, encoded JPEG image files, or CSV files. They process vectorized & standardized representations_
-
-Therefore we need to normalize the images before using them
 
 ## Step 4: Train + Test the model
 
