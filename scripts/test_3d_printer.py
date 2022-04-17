@@ -8,7 +8,11 @@ from tensorflow.python.keras.layers import Conv2D
 from tensorflow.python.keras.layers import MaxPooling2D
 from tensorflow.python.keras.layers import Dense
 from tensorflow.python.keras.layers import Flatten
+from tensorflow.keras.preprocessing.image import load_img
+from tensorflow.keras.preprocessing.image import img_to_array
 from tensorflow.keras.optimizers import SGD
+from tensorflow.python.keras.preprocessing.image import ImageDataGenerator
+
 from tensorflow import keras
 
 import cv2
@@ -16,9 +20,9 @@ import tensorflow as tf
 
 def load_image(filename):
     # load the image
-    img = tf.keras.utils.load_img(filename, target_size=(200, 200))
+    img = load_img(filename, target_size=(200, 200))
     # convert to array
-    img = tf.keras.utils.img_to_array(img)
+    img = img_to_array(img)
     # reshape into a single sample with 3 channels
     img = img.reshape(1, 200, 200, 3)
     # center pixel data
