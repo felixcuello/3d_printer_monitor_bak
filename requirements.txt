@@ -10,5 +10,5 @@ tensorflow==2.5.0               # This is required for keras
 matplotlib==3.3.4               # This is for plot
 keras==2.4.3                    # This is for the CNN
 pandas==1.1.5                   # This is for dataframes processing
-scikit-image==0.18.3            # This is for reading images while doing data augmentation
+scikit-image==0.17.2            # This is for reading images while doing data augmentation
 # acapture                      # We're not using this, but this will be good for real time processing
